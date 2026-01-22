@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seesaw Simulation - Case Study</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="app">
+        <h1>Seesaw Simulation</h1>
+
+        <div id="ui-overlay">
+            <div class="weight-display">
+                <strong>Left Side:</strong> <span id="left-total-weight">0</span> kg
+            </div>
+            <div class="weight-display">
+                <strong>Right Side:</strong> <span id="right-total-weight">0</span> kg
+            </div>
+        </div>
+
+        <div class="simulation-area">
+            
+            <div id="seesaw-wrapper">
+                
+                <div id="plank" class="plank">
+                    </div>
+
+            </div>
+
+            <div class="pivot"></div>
+            
+        </div>
+
+        <div class="controls">
+            <button id="reset-btn">Reset</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
