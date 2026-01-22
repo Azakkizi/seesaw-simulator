@@ -1,2 +1,4 @@
-# seesaw-simulator
-Initialization - Project structure files - HTML, CCS, JavaScript
+# SEESAW SIMULATOR
+__Betül Azakoğlu__
+
+**Languages:** HTML, CCS, Pure JavaScript
