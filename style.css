@@ -25,6 +25,10 @@ body {
     font-size: 1.2rem;
 }
 
+.angle-display {
+    font-size: 1.2rem;
+}
+
 .simulation-area {
     position: relative;
     width: 600px;

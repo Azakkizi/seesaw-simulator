@@ -2,6 +2,7 @@ const plank = document.getElementById('plank');
 const seesawWrapper = document.getElementById('seesaw-wrapper');
 const leftWeightDisplay = document.getElementById('left-total-weight');
 const rightWeightDisplay = document.getElementById('right-total-weight');
+const angleDisplay = document.getElementById('angle');
 
 // get data from local storage or start with an empty array
 let droppedWeights = JSON.parse(localStorage.getItem('seesaw_state')) || [];
@@ -46,12 +47,13 @@ function updateSimulation() {
         }
     });
 
+    // slope angle calculation (max ±30 degrees)
+    const angle = Math.max(-30, Math.min(30, (rightTorque - leftTorque) / 10));
+
     // update ui
     leftWeightDisplay.innerText = leftWeight;
     rightWeightDisplay.innerText = rightWeight;
-
-    // slope angle calculation (max ±30 degrees)
-    const angle = Math.max(-30, Math.min(30, (rightTorque - leftTorque) / 10));
+    angleDisplay.innerText = angle.toFixed(2);
     
     // softer rotation effect
     seesawWrapper.style.transform = `rotate(${angle}deg)`;
