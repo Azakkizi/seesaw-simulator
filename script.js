@@ -8,7 +8,7 @@ let droppedWeights = JSON.parse(localStorage.getItem('seesaw_state')) || [];
 
 plank.addEventListener('click', (e) => {
     const rect = plank.getBoundingClientRect();
-    const clickX = e.clientX - rect.left; // x coordinate within the plank
+    const clickX = e.offsetX; // x coordinate within the plank --- clickX = cos(angle) * 400
     const centerX = 200; // center of plank
     
     // distance from center 
@@ -20,7 +20,7 @@ plank.addEventListener('click', (e) => {
     const newWeight = {
         weight: weight,
         distance: distance, // if negative, left side - if positive, right side
-        positionX: clickX
+        positionX: clickX,
     };
 
     droppedWeights.push(newWeight);
