@@ -18,7 +18,6 @@ plank.addEventListener('click', (e) => {
     const weight = Math.floor(Math.random() * 10) + 1;
 
     const newWeight = {
-        id: Date.now(),
         weight: weight,
         distance: distance, // if negative, left side - if positive, right side
         positionX: clickX
@@ -30,11 +29,52 @@ plank.addEventListener('click', (e) => {
 });
 
 function updateSimulation() {
-    // TODO: calculate torques and update seesaw angle
+    let leftTorque = 0;
+    let rightTorque = 0;
+    let leftWeight = 0;
+    let rightWeight = 0;
+
+    droppedWeights.forEach(obj => {
+        if (obj.distance < 0) {
+            // left side(abys value for torque calculation)
+            leftTorque += obj.weight * Math.abs(obj.distance);
+            leftWeight += obj.weight;
+        } else {
+            // right side
+            rightTorque += obj.weight * obj.distance;
+            rightWeight += obj.weight;
+        }
+    });
+
+    // update ui
+    leftWeightDisplay.innerText = leftWeight;
+    rightWeightDisplay.innerText = rightWeight;
+
+    // slope angle calculation (max ±30 degrees)
+    const angle = Math.max(-30, Math.min(30, (rightTorque - leftTorque) / 10));
+    
+    // softer rotation effect
+    seesawWrapper.style.transform = `rotate(${angle}deg)`;
+
+    // save the state to local storage
+    localStorage.setItem('seesaw_state', JSON.stringify(droppedWeights));
 }
 
 function renderWeight(obj) {
-    // TODO: create weight element
+    const objectEl = document.createElement('div');
+    objectEl.className = 'dropped-object';
+    
+    // Görsel boyut ağırlığa göre değişebilir
+    const size = 20 + (obj.weight * 2); 
+    objectEl.style.width = `${size}px`;
+    objectEl.style.height = `${size}px`;
+    objectEl.style.backgroundColor = `hsl(${obj.weight * 36}, 70%, 50%)`;
+    
+    // positioning
+    objectEl.style.left = `${obj.positionX}px`;
+    objectEl.innerText = obj.weight;
+
+    plank.appendChild(objectEl);
 }
 
 // draw existing weights on load
