@@ -12,21 +12,30 @@ body {
     text-align: center;
 }
 
+h1 {
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    letter-spacing: 5px;
+}
+
 #ui-overlay {
     display: flex;
     justify-content: space-around;
     margin-bottom: 50px;
     background: white;
     padding: 15px;
+    gap: 30px;
     border-radius: 10px;
+    box-shadow: black 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .weight-display {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .angle-display {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .simulation-area {
@@ -87,4 +96,32 @@ button {
     color: white;
     border: none;
     border-radius: 5px;
+}
+
+button:hover {
+    background-color: #555555;
+}
+
+.history {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.history h2 {
+    margin-bottom: 10px;
+}
+
+.history ul {
+    list-style-type: none;
+    padding: 0;
+    height: 160px;
+    overflow-y: auto;
+}
+
+.history li {
+    background: #e0e0e0;
+    padding: 8px;
+}
+.history li:nth-child(odd) {
+    background: #d0d0d0;
 }

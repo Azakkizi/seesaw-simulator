@@ -2,6 +2,7 @@ const plank = document.getElementById('plank');
 const seesawWrapper = document.getElementById('seesaw-wrapper');
 const leftWeightDisplay = document.getElementById('left-total-weight');
 const rightWeightDisplay = document.getElementById('right-total-weight');
+// const nextWeightDisplay = document.getElementById('next-weight');
 const angleDisplay = document.getElementById('angle');
 
 // get data from local storage or start with an empty array
@@ -60,6 +61,8 @@ function updateSimulation() {
 
     // save the state to local storage
     localStorage.setItem('seesaw_state', JSON.stringify(droppedWeights));
+    
+    renderHistory();
 }
 
 function renderWeight(obj) {
@@ -101,3 +104,13 @@ resetBtn.addEventListener('click', () => {
     // reset the simulation
     updateSimulation();
 });
+
+function renderHistory() {
+    const historyList = document.getElementById('history-list');
+    historyList.innerHTML = '';
+    droppedWeights.forEach((obj) => {
+        const listItem = document.createElement('li');
+        listItem.innerText = `${obj.weight} kg dropped on right side at ${obj.distance}px from center`;
+        historyList.prepend(listItem); // prepend instead of appendChild for reverse order
+    });
+}
